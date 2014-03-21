@@ -3,7 +3,13 @@ extends ./layout
 block content 
 	h1 This is going to be a solid app at some point 
 
-	please enter room number
+	lease enter room number
+	br
 	input(type = 'text', id='roomId')
+	br
+	please enter your user name
+	br
+	input(type= 'text', id = 'userName')
+	br
 	button(onclick= 'join()', type = button).
 		join
