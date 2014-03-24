@@ -3,13 +3,30 @@ extends ./layout
 block content 
 	h1 This is going to be a solid app at some point 
 
-	lease enter room number
-	br
-	input(type = 'text', id='roomId')
-	br
-	please enter your user name
-	br
-	input(type= 'text', id = 'userName')
-	br
-	button(onclick= 'join()', type = button).
-		join
+	div(id='login')
+		P please enter room number
+		br
+		input(type = 'text', id='roomId')
+		br
+		P please enter your user name
+		br
+		input(type= 'text', id = 'userName')
+		br
+		button(onclick= 'join()', type = button).
+			join
+		button(onclick = 'newRoom()' type = button).
+			Create New Room
+
+	
+	div(id='order')
+		button(onclick= 'checkIn()', type = button).
+			Check In
+
+
+	div(id='master')
+		button(onclick ='soundRally()', type = button).
+			Sound
+
+	div(id='piano')
+		P this is your piano
+

@@ -1,18 +1,48 @@
+	var login;
+	var order;
+	var piano;
+	var master;	
+
+window.onload = function(){
+	login = $('#login');
+	master = $('#master');
+	piano = $('#piano');
+
+	order.hide();
+	piano.hide();
+
+}
+
+
+var newRoom = function(){
+	payload= {};
+	var name = document.getElementById('userName');
+	payload.device = 'desktop';
+	payload.name = name.value;
+	socket.emit('newRoom', payload);
+	login.toggle();
+	master.toggle();
+}
+
 var join = function(){
 	var payload ={}
-	var div = document.getElementById('roomId');
+	var newRoomId = document.getElementById('roomId');
 	var name = document.getElementById('userName');
-	payload.roomId = div.value;
+	payload.roomId = roomId.value;
 	payload.device = 'desktop'
 	payload.userName = name.value;
 	if(roomId === ''){
 		alter('invalid room')
+		return;
 	}else{
-		socket.emit('newJoin', payload);
+		socket.emit('join', payload);
 	}
+	
+	login.toggle();
+	piano.toggle();
 }
 
-var checkIn = function(){
-	socket.emit("ping" , { msg: "I'm here..." })
+var soundRally = function(){
+	socket.emit('soundRally');
 }
 

@@ -1,6 +1,12 @@
 head 
 	title phoneSort
 	link(rel = 'stylesheet', href = '/style.css')
+	script(scr = 'timbre.js')	
 	script(src = 'socket.io/socket.io.js')
 	script(src = '/mobileEmitHandlers.js')
 	script(src = '/mobileHelper.js')
+	script(scr = "http://code.jquery.com/jquery-1.11.0.min.js")
+	script(type  ='text/javascript').
+		if(T){
+			console.log('hello');
+		}
