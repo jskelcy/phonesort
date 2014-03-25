@@ -1,5 +1,4 @@
 	var login;
-	var order;
 	var piano;
 	var master;	
 
@@ -12,7 +11,6 @@ window.onload = function(){
 	piano.hide();
 
 }
-
 
 var newRoom = function(){
 	payload= {};

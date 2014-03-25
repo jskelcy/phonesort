@@ -14,7 +14,7 @@ socket.on('joinStatus', function(data){
 			console.log('you are the master');
 			break;
 		case(2):
-		console.log(data.room.connections)
+			console.log(data.room.connections)
 			var nameList = ''
 			for(var bro in data.room.connections){
 				if(data.room.connections.hasOwnProperty(bro))

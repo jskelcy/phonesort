@@ -1,4 +1,4 @@
-var Room = require('./room.js');
+var Room = require('./static/room.js');
 
 var activeRooms = {};
 var socketToRoom = {}
@@ -7,21 +7,21 @@ var nextAvailableRoom = 0;
 module.exports = function(socket){ 
 	socket.on('newRoom', function (payload){
 			nextAvailableRoom++;
+			var currentRoom = activeRooms[nextAvailableRoom];
 			socket.join(nextAvailableRoom);
-			var room = new Room( nextAvailableRoom, {name: payload.name,
+			var room = new Room(nextAvailableRoom, {name: payload.name,
 				id: socket.id});
-			activeRooms[nextAvailableRoom] = room;
-			socketToRoom[socket.id] = activeRooms[nextAvailableRoom];
-			activeRooms[nextAvailableRoom].connections[socket.id] = {
+			currentRoom = room;
+			socketToRoom[socket.id] = currentRoom;
+			currentRoom.connections[socket.id] = {
 				name: payload.userName,
-				position: activeRooms[nextAvailableRoom].count
+				position: currentRoom.count
 			}
 			console.log('new user '+ socket.id);
-			socket.emit('joinStatus',{msg: 1, room: activeRooms[nextAvailableRoom]});
+			socket.emit('joinStatus',{msg: 1, room: currentRoom});
 	});
 
 	socket.on('join', function(payload){
-		console.log('there is someone trying to join room '+ payload.roomId)
 		if(activeRooms[payload.roomId]){
 			var currentRoom = activeRooms[payload.roomId];
 			socket.join(payload.roomId);
@@ -37,4 +37,12 @@ module.exports = function(socket){
 		}
 
 	});
+/*
+	socket.on('soundRally'){
+		var sounds = {};
+		io.sockets.clients(socketToRoom[socket.id].name).forEach(function(currentSocket){
+			//populate the sounds
+		});
+	}
+	*/
 }
