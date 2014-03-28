@@ -41,10 +41,19 @@ module.exports = function(io){
 				socket.emit('joinStatus',{msg: 0})
 			}
 		});
-		socket.on('soundRally', function(){
+		
+        socket.on('soundRally', function(){
 			var tuner = require('./static/tuner.js');
-			var keys = [];
-			(function (obj){
+            sounds={};
+            var i = 30;
+            io.sockets.clients(socketToRoom[socket.id].name).forEach(function(currentSocket){
+                sounds[currentSocket.id] = tuner[i];
+            }
+            )
+            socket.broadcast.emit('soundRally', sounds);
+
+			/*
+            (function (obj){
 				for (var prop in obj) {
     				if (obj.hasOwnProperty(prop)) {
        					keys.push(prop);
@@ -58,6 +67,7 @@ module.exports = function(io){
 			});
 			console.log(sounds);
 			socket.broadcast.emit('soundRally',sounds);
+            */
 		});
 	}
 }
