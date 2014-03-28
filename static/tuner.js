@@ -1,4 +1,7 @@
-module.exports = function equal_temp(seed) {
+module.exports = equal_temp();
+
+
+function equal_temp(seed) {
   acc = {};
   seed = typeof seed !== 'undefined' ? seed : 440.0;
  
@@ -14,6 +17,5 @@ module.exports = function equal_temp(seed) {
     seed = seed * Math.pow(2.0, (1.0/12.0));
     notesindex += 1
  }
-console.log(acc); 
  return acc
 }

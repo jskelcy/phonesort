@@ -7,8 +7,8 @@ window.onload = function(){
 	master = $('#master');
 	piano = $('#piano');
 
-	order.hide();
 	piano.hide();
+	master.hide();
 
 }
 
@@ -33,6 +33,7 @@ var join = function(){
 		alter('invalid room')
 		return;
 	}else{
+		console.log(payload)	
 		socket.emit('join', payload);
 	}
 	

@@ -10,18 +10,14 @@ socket.on('joinStatus', function(data){
 			alert('Invalid Room, sorry man');
 			break;
 		case(1):
-			console.log('you have joined room ' + data.room.name+ ' there are currently no other users in the room');
-			console.log('you are the master');
+			$('#master').append('<p>You are now the master of room ' + data.room.roomId + '</p>')
 			break;
 		case(2):
-			console.log(data.room.connections)
-			var nameList = ''
-			for(var bro in data.room.connections){
-				if(data.room.connections.hasOwnProperty(bro))
-					nameList = nameList +", "+ data.room.connections[bro].name;
-			}
-			var bro = data.room
-			console.log('you have joined room with ' + nameList);
-			console.log('The master of the rooom is '+ data.room.master.name);
+			socket.id = data.socketId
 	}
 })
+
+socket.on('soundRally',function(data){
+	console.log(socket.id)
+	T("sin", {freq:data[socket.id], mul:0.5, timeout: 1000}).play();
+});

@@ -2,6 +2,11 @@ extends ./layout
 
 block content 
 	h1 This is going to be a solid app at some point 
+	
+
+	div(id = 'newRoom')
+		button(onclick = 'newRoom()' type = button).
+			Create New Room
 
 	div(id='login')
 		P please enter room number
@@ -14,14 +19,8 @@ block content
 		br
 		button(onclick= 'join()', type = button).
 			join
-		button(onclick = 'newRoom()' type = button).
-			Create New Room
 
 	
-	div(id='order')
-		button(onclick= 'checkIn()', type = button).
-			Check In
-
 
 	div(id='master')
 		button(onclick ='soundRally()', type = button).

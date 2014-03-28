@@ -4,7 +4,8 @@ var express = require('express')
     , server = require('http').createServer(app)
     , io = require('socket.io').listen(server)
     , device = require('express-device')
-    , tuner = require('./static/tuner.js'); 
+
+
 server.listen(3030);
 
 
@@ -27,6 +28,4 @@ app.get('/',function(req, res){
 	}
 });
 
-tuner();
-
-io.sockets.on('connection', socketHandlers);
+io.sockets.on('connection', socketHandlers(io));
